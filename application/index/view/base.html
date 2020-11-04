@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>博客__STATIC__{:session('user.u_username')}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__STATIC__/res/layui/css/layui.css">
+    <link rel="stylesheet" href="__STATIC__/res/static/css/mian.css">
+    <!--tp分页用 -->
+    <link rel="stylesheet" href="__STATIC__/pagination.css">
+
+    <script src="__STATIC__/home/js/jquery-1.11.3.min.js"></script>
+
+</head>
+<body class="lay-blog">
+<div class="header">
+    <div class="header-wrap">
+        <h1 class="logo pull-left">
+            <a href="{:url('index/index/index')}">
+                <img src="__STATIC__/res/static/images/logo.png" alt="" class="logo-img">
+                <img src="__STATIC__/res/static/images/logo-text.png" alt="" class="logo-text">
+            </a>
+        </h1>
+        <form class="layui-form blog-seach pull-left" action="{:url('index/search/sear')}" method="post">
+            <div class="layui-form-item blog-sewrap">
+                <div class="layui-input-block blog-sebox">
+                    <i class="layui-icon layui-icon-search"></i>
+                    <input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </form>
+        <div class="blog-nav pull-right">
+            <ul class="layui-nav pull-left">
+                <li class="layui-nav-item layui-this"><a href="{:url('index/index')}">首页</a></li>
+                <li class="layui-nav-item"><a href="message.html">留言</a></li>
+                <li class="layui-nav-item"><a href="about.html">关于</a></li>
+
+                {if condition="!empty(session('user.u_id'))"}
+                <li class="layui-nav-item layuimini-setting">
+                    <a href="javascript:;">{:session('user.u_username')}</a>
+                    <dl class="layui-nav-child">
+                        <br>
+                        <!--<dd>
+                            <a href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" layuimini-content-href="page/user-password.html" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
+                        </dd>
+                        <dd>
+                            <hr>
+                        </dd>-->
+                        <dd>
+                            <a href="javascript:;" class="login-out" id="user_option" >退出登录</a>
+                        </dd>
+                    </dl>
+                </li>
+                {/if}
+            </ul>
+            {if condition="empty(session('user.u_id'))"}
+            <a href="{:url('index/login/index')}" class="personal pull-left">
+                登录
+                <!-- <i class="layui-icon layui-icon-username">{:session('user.u_username')??'未登录'}</i>-->
+            </a>
+            <a href="#" class="personal pull-left">
+                注册
+                <!-- <i class="layui-icon layui-icon-username">{:session('user.u_username')??'未登录'}</i>-->
+            </a>
+            {/if}
+            <!--<ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
+                </li>
+                <li class="layui-nav-item layuimini-setting">
+                    <a href="javascript:;">admin</a>
+                    <dl class="layui-nav-child">
+
+                        <dd>
+                            <a href="javascript:;" class="login-out">退出登录</a>
+                        </dd>
+                    </dl>
+                </li>
+
+            </ul>-->
+        </div>
+        <div class="mobile-nav pull-right" id="mobile-nav">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-more"></i>
+            </a>
+        </div>
+    </div>
+    <ul class="pop-nav" id="pop-nav">
+        <li><a href="{:url('index/index')}">首页</a></li>
+        <li><a href="message.html">留言</a></li>
+        <li><a href="about.html">关于</a></li>
+
+    </ul>
+</div>
+<div class="container-wrap">
+
+    <!--左边侧边栏-->
+    <!--    <div class="left_con_box  ">
+            <ul class="layui-nav layui-nav-tree left_con layui-bg-blue" lay-filter="test" >
+                &lt;!&ndash; 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> &ndash;&gt;
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">默认展开</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">选项1</a></dd>
+                        <dd><a href="javascript:;">选项2</a></dd>
+                        <dd><a href="">跳转</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">移动模块</a></dd>
+                        <dd><a href="">后台模版</a></dd>
+                        <dd><a href="">电商平台</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">产品</a></li>
+                <li class="layui-nav-item"><a href="">大数据</a></li>
+            </ul>
+        </div>-->
+    <!--左边侧边栏end-->
+
+
+    <!--中间内容start-->
+    {block name='content'}
+
+
+    {/block}
+    <!--中间内容END-->
+
+
+    <!--右边边侧边栏start-->
+    <div class="right_con">
+        <div class="layui-card">
+
+            <div class="layui-card-header "><span class="layui-icon layui-icon-note" style="font-size: 30px; "></span>云标签
+            </div>
+            <div class="layui-card-body ">
+                <div class="layui-btn-container">
+                    {foreach name='tags' item='tag'}
+                    <a href="{:url('tag/index',['tag_id'=>$tag['tag_id']])}"
+                       class="layui-btn layui-btn-radius layui-btn-normal layui-anim layui-anim-up layui-anim-scale">{$tag['tag_name']}</a>
+                    {/foreach}
+
+                </div>
+            </div>
+        </div>
+        <!--右边边侧边栏end-->
+    </div>
+</div>
+<div class="footer">
+    <p>
+        <span>&copy; 2020</span>
+        <span><a href="" target="_blank">William</a></span>
+        <span>MIT license</span>
+    </p>
+    <p><span>人生就是一场修行</span></p>
+</div>
+<script src="__STATIC__/res/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '__STATIC__/res/static/js/'
+    }).use('blog');
+</script>
+
+</body>
+</html>
+
+<style>
+    .left_con_box {
+        width: 200px;
+        height: 300px;
+        display: inline-block;
+        float: left;
+        /*overflow: auto;*/
+    }
+
+    /*左边公共部分*/
+    .left_con {
+        display: inline-block;
+        position: fixed;
+        width: 250px;
+        top: 100px;
+        left: 0;
+        overflow: hidden;
+        background: #2F4056;
+        z-index: 999;
+    }
+
+    /*右边公共部分*/
+    .right_con {
+        width: 270px;
+        display: inline-block;
+        position: fixed;
+        top: 100px;
+        right: 0;
+
+    }
+
+
+/*    用户*/
+    /*#user_option{
+        position: relative;
+        top: 0;
+        z-index: 9999999;
+    }*/
+</style>
+<script>
+    $('.login-out').click(function () {
+        $.ajax({
+        url:"{:url('index/login/logout',['u_id'=>session('user.u_id')])}",
+            success:function () {
+                window.location='';
+            }
+        })
+    })
+</script>

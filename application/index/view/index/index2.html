@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>123</title>
+    <link rel="stylesheet" href="static/layui/css/layui.css" media="all">
+</head>
+<body>
+<div class="nav_box">
+    <ul class="layui-nav  layui-bg-green layui-col-lg12  header">
+        <li class="layui-nav-item "><a href=""><img src="/static/home/images/boke_logo.jpg" alt="" style="width:auto"
+                                                    height="60px"></a></li>
+        <li class="layui-nav-item layui-col-lg-offset1"><a href="">首页</a></li>
+        <li class="layui-nav-item layui-this">
+            <a href="javascript:;">产品</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">选项1</a></dd>
+                <dd><a href="">选项2</a></dd>
+                <dd><a href="">选项3</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">大数据</a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">解决方案</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">移动模块</a></dd>
+                <dd><a href="">后台模版</a></dd>
+                <dd class="layui-this"><a href="">选中项</a></dd>
+                <dd><a href="">电商平台</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">社区</a></li>
+    </ul>
+</div>
+<div class="  main">
+    <div class="">
+        <div class="left_con_box  ">
+            <ul class="layui-nav layui-nav-tree left_con" lay-filter="test" >
+                <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">默认展开</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">选项1</a></dd>
+                        <dd><a href="javascript:;">选项2</a></dd>
+                        <dd><a href="">跳转</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">移动模块</a></dd>
+                        <dd><a href="">后台模版</a></dd>
+                        <dd><a href="">电商平台</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">产品</a></li>
+                <li class="layui-nav-item"><a href="">大数据</a></li>
+            </ul>
+        </div>
+        <div class="main_con ">
+            2323
+        </div>
+        <div class="right_con">
+            <div class="layui-card" style="width: 326px;">
+                <span class="layui-icon layui-icon-note"  style="font-size: 30px; "></span>
+                <div class="layui-card-header ">云标签</div>
+                <div class="layui-card-body ">
+                    <div class="layui-btn-container">
+                        <a href=""
+                           class="layui-btn layui-btn-radius layui-btn-normal layui-anim layui-anim-up layui-anim-scale">标签</a>
+                        <a href=""
+                           class="layui-btn layui-btn-radius layui-btn-normal layui-anim layui-anim-up layui-anim-scaleSpring">标签</a><a
+                            href=""
+                            class="layui-btn layui-btn-radius layui-btn-normal layui-anim layui-anim-up layui-anim-scaleSpring">标签</a><a
+                            href=""
+                            class="layui-btn layui-btn-radius layui-btn-normal layui-anim layui-anim-up layui-anim-scaleSpring">标签</a><a
+                            href=""
+                            class="layui-btn layui-btn-radius layui-btn-normal layui-anim layui-anim-up layui-anim-scaleSpring">标签</a><a
+                            href=""
+                            class="layui-btn layui-btn-radius layui-btn-normal layui-anim layui-anim-up layui-anim-scaleSpring">标签</a><a
+                            href=""
+                            class="layui-btn layui-btn-radius layui-btn-normal layui-anim layui-anim-up layui-anim-scaleSpring">标签</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<style>
+    .nav_box {
+        width: 100%;
+        height: 60px;
+    }
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        z-index: 999;
+    }
+
+    .main {
+        background: pink;
+        overflow: hidden;
+    }
+
+    .layui-nav-tree {
+    }
+
+
+    .left_con_box{
+        width: 200px;
+        height: 300px;
+        display: inline-block;
+        float: left;
+        /*overflow: auto;*/
+    }
+    /*左边公共部分*/
+    .left_con {
+        display: inline-block;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        overflow: hidden;
+        background: #2F4056;
+        z-index: 999;
+    }
+
+    .main_con {
+       /* position: relative;
+        top: 100;
+        left: 0;*/
+        width: 823px;
+        background: lightgrey;
+        height: 1400px;
+        /*background: pink;*/
+        margin: auto;
+       float: left;
+
+    }
+
+
+    /*右边公共部分*/
+    .right_con {
+        display: inline-block;
+
+        position: fixed;
+        top: 60px;
+        right: 0;
+
+    }
+
+    .tag_box{
+        width: 200px;
+    }
+
+
+    .layui-card-body {
+        overflow: hidden;
+    }
+</style>
+<script src="static/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use('element', function () {
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //监听导航点击
+        element.on('nav(demo)', function (elem) {
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
+</script>

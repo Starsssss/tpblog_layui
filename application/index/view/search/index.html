@@ -1,0 +1,41 @@
+{extend name='base'/}
+
+
+{block name='content'}
+
+
+
+
+<div class="container">
+    <div class="contar-wrap">
+
+        {foreach name='res' item='art'}
+        <div class="item">
+            <div class="item-box  layer-photos-demo1 layer-photos-demo">
+                <h3><a href="{:url('article/index',['art_id'=>$art['arc_id']])}">{$art['arc_title']}</a></h3>
+                <h5>发布于：<span class="update_time">{$art['updatetime']}</span>
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    <i class="layui-icon layui-icon-note"></i>
+
+                    {foreach name="art['tags']" item='v'}
+                    <a href="{:url('tag/index',['tag_id'=>$v['tag_id']])}"
+                       class="layui-btn layui-btn-xs layui-btn-radius  layui-anim layui-anim-up layui-anim-scale">{$v['tag_name']}</a>
+                    {/foreach}</h5>
+                <p> {$art['arc_digest']}</p>
+                <img src="__STATIC__/res/static/images/item.png" alt="">
+            </div>
+            <div class="comment count">
+                <a href="{:url('article/index',['art_id'=>$art['arc_id']])}#comment">评论({$art['review_count']})</a>
+                <a href="javascript:;" class="like">点赞{$art['likes']}</a>
+            </div>
+        </div>
+        {/foreach}
+    </div>
+    <div class="item-btn">
+        <!--        <button class="layui-btn layui-btn-normal">下一页</button>-->
+        {$res->render()|raw}
+    </div>
+
+</div>
+
+{/block}

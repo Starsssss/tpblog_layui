@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="static/layui/css/layui.css" media="all">
+{extend name='base1'/}
+{block name='main'}
+
+<!--推荐第一广告位-->
+<div id="blogFirstAdvert"></div>
+<ul class="feedlist_mod home" id="feedlist_id" shown-offset="1602996420573698" style="padding-top: 0px;">
+    {foreach name='articles' item='art'}
+    <li class="clearfix" data-type="blog" data-id="108948112" shown-time="1602996420">
+        <div class="list_con">
+            <div class="title">
+                <h2>
+                    <a href="{:url('article/index',['art_id'=>$art['arc_id']])}" target="_self">
+                        {$art['arc_title']} </a>
+                </h2>
+
+            </div>
+
+            <dl class="list_userbar">
+                <!--<dt>
+                    <a href="https://blog.csdn.net/gitchatxiaomi" target="_blank" class="user_img">
+                        <img src="/static/home/CSDN-index_files/1_gitchatxiaomi" alt="gitchatxiaomi"
+                             title="gitchatxiaomi" username="gitchatxiaomi">
+                    </a>
+                </dt>
+                <dd class="name">
+                    <a href="" target="_blank">
+                        git小米粥 </a>
+                </dd>-->
+                <!--                    <div class="interval"></div>-->
+                <!--                    <dd class="time">-->
+                <!--                        --><!--                    </dd>-->
+                <div class="summary oneline">
+                    {$art['arc_digest']}
+                </div>
+                <div class="interactive floatR">
+
+                    <!--阅读 begin-->
+                    <div class="interval interval_isshow" style="display: block;"></div>
+                    <dd class="read_num">
+                        <a href="">
+                                        <span class="text"><svg t="1568705845189" class="icon eye"
+                                                                viewBox="0 0 1433 1024" version="1.1"
+                                                                xmlns="http://www.w3.org/2000/svg" p-id="16883"
+                                                                width="200" height="200"><path
+                                                d="M720.69629629 932.6176963c-213.05768889 0-407.36918519-120.58848889-582.93448888-361.67534074-23.88337036-32.71571111-23.88337036-85.169 0-117.88471112C313.32711111 211.97079259 507.63860741 91.3823037 720.69629629 91.3823037s407.36918519 120.58848889 582.9344889 361.67534074c23.88337036 32.71571111 23.88337036 85.169 0 117.88471112C1128.06548147 812.02920741 933.75398519 932.6176963 720.69629629 932.6176963z m0-721.00740741C542.51734074 211.61028889 377.85727408 309.39691852 222.48017777 512 377.85727408 714.60308148 542.4272148 812.38971111 720.69629629 812.38971111c178.17895556 0 342.83902223-97.78662964 498.21611851-300.38971111C1063.53531852 309.39691852 898.96537777 211.61028889 720.69629629 211.61028889z m0 495.69259259a195.30288148 195.30288148 0 1 1 0-390.60576296 195.30288148 195.30288148 0 0 1 0 390.60576296zM720.69629629 602.12592592a90.12592592 90.12592592 0 1 0 0-180.25185184 90.12592592 90.12592592 0 0 0 0 180.25185184z"
+                                                p-id="16884" fill=""></path></svg></span>
+                            <span class="num">{$art['arc_click']}</span>
+                        </a>
+                    </dd>
+                    &nbsp;
+                    <!--阅读 end-->
+                    <!--新增评论数+阅读 begin-->
+<!--                    <div class="interval"></div>-->
+<!--                    <dd class="common_num ">-->
+<!--                        <a href="https://blog.csdn.net/gitchatxiaomi/article/details/108948112#commentBox"-->
+<!--                           target="_blank"-->
+<!--                           data-report-click="{&quot;mod&quot;:&quot;popu_459&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/gitchatxiaomi/article/details/108948112#commentBox&quot;,&quot;strategy&quot;:&quot;none&quot;,&quot;index&quot;:&quot;28&quot;,&quot;extend1&quot;:&quot;&quot;}">-->
+<!--                                        <span class="text"><svg t="1568705456499" class="icon" viewBox="0 0 1088 1024"-->
+<!--                                                                version="1.1" xmlns="http://www.w3.org/2000/svg"-->
+<!--                                                                p-id="16736" width="200" height="200"><path-->
+<!--                                                d="M384 446.656a64.064 64.064 0 0 1-96.32 56.512A64 64 0 1 1 384 446.656zM576 448a64 64 0 1 1-128 0 64 64 0 0 1 128 0z m192 0a64 64 0 1 1-128 0 64 64 0 0 1 128 0z"-->
+<!--                                                fill="" p-id="16737"></path><path-->
+<!--                                                d="M217.28 1008a99.392 99.392 0 0 1-99.072-99.072v-107.2A300.352 300.352 0 0 1 16 574.656V319.36A303.744 303.744 0 0 1 319.36 16h408.512a303.68 303.68 0 0 1 303.36 303.36v255.36a303.68 303.68 0 0 1-303.36 303.36H429.184L275.2 989.248a98.368 98.368 0 0 1-57.92 18.752z m102.08-896a207.552 207.552 0 0 0-207.36 207.36v255.36c0 65.856 30.272 126.336 82.944 165.952 12.096 9.088 19.2 23.232 19.2 38.4l3.072 132.992a2.88 2.88 0 0 0 1.728-0.576l166.592-120.32a48 48 0 0 1 28.096-9.088h314.24a207.552 207.552 0 0 0 207.36-207.36V319.36a207.552 207.552 0 0 0-207.36-207.36H319.36z"-->
+<!--                                                fill="" p-id="16738"></path></svg> </span>-->
+<!--                            <span class="num">32</span>-->
+<!--                        </a>-->
+<!--                    </dd>-->
+<!--                    &lt;!&ndash;新增评论数+阅读 end&ndash;&gt;-->
+<!--                </div>-->
+
+            </dl>
+        </div>
+        <i class="layui-icon layui-icon-note"></i>
+
+        {foreach name="art['tags']" item='v'}
+
+        <a href="{:url('tag/index',['tag_id'=>$v['tag_id']])}">{$v['tag_name']}</a>
+        {/foreach}
+
+    </li>
+    {/foreach}
+
+
+
+    <script>
+        var countArticle = 35;
+    </script>
+</ul>
+<div class="feed_loading" style="display: none;">
+    <img src="/static/home/CSDN-index_files/feedLoading.gif" alt="I&#39;m loading" title="I&#39;m loading">
+</div>
+
+{/* $articles->render()|raw
+分页待做*/ }
+
+{/block}

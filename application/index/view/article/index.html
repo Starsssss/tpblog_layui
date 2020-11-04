@@ -1,0 +1,176 @@
+{extend name='base'/}
+{block name='content'}
+<div class="container container-message container-details">
+    <div class="contar-wrap">
+        <div class="item">
+            <div class="item-box  layer-photos-demo1 layer-photos-demo">
+                <h3><a href="javascript:;">{$article['arc_title']}</a></h3>
+                <h5>发布于：<span id="updatetime">刚刚</span></h5>
+                <p>
+                    {$article['arc_content']|raw}</p>
+                <img src="../res/static/images/item.png" alt="">
+                <div class="count layui-clear">
+                    <span class="pull-left">阅读 <em>{$article['arc_click']}</em></span>
+                    <span class="pull-right like"><i class="layui-icon layui-icon-praise"></i><em>{$likes}</em></span>
+                </div>
+            </div>
+        </div>
+        <a name="comment"> </a>
+        <div class="comt layui-clear" style="margin-bottom:10px;">
+            <a href="javascript:;" class="pull-left">评论{$reviews_count}</a>
+            <!--<a href="comment.html" class="pull-right">写评论</a>-->
+        </div>
+        <!--写评论开始-->
+        <div class="layui-form-item layui-form-text">
+            <textarea id="comment_block" class="layui-textarea"  style="resize:none" placeholder="写点什么11啊" article_id="{$article['arc_id']}"></textarea>
+        </div>
+        <div class="layui-btn layui-btn-sm" id="comment_btn">确定</div>
+        <!--写评论结束-->
+        <div id="LAY-msg-box">
+            {foreach name="reviews" item="v"}
+            <div class="info-item">
+                <img class="info-img" src="/static/res/static/images/info-img.png" alt="">
+                <div class="info-text">
+                    <p class="title count">
+                        <span class="name">{$v['user']['u_username']}</span>
+                        <span class="info-img like"><i class="layui-icon layui-icon-praise"></i>5.8万</span>
+                    </p>
+                    <p class="info-intr">
+                        {$v['rev_content']}</p>
+                    <div><span class="rev_time">{$v['rev_time']}</span> <span
+                            class="layui-btn  layui-btn-xs reply-action"
+                            from_uid="{$v['user']['u_id']}" from_username="{$v['user']['u_username']}"  article_id="{$article['arc_id']}" rev_id="{$v['rev_id']}">回复</span></div>
+                    <div>共有<span>{$v['reply']|count}</span>条回复</div>
+                    {/* 回复区--start */ }
+                    <div class="reply-box">
+                        {foreach name="v['reply']" item="v1"}
+                        <div>
+                            <!-- <span class="from_uid" style="display: none">{$v1['u_id']}</span>
+                             <span class="to_uid" style="display: none">{$v1['to_uid']}</span>-->
+                            <span class="">{$v1['u_username']}</span>:回复@<span>{$v1['to_username']}</span>: </span>
+                            <span>{$v1['rev_content']}</span>
+                            <div><span class="rev_time">{$v1['rev_time']}</span> <span
+                                    class="layui-btn  layui-btn-xs reply-action" from_uid="{$v1['u_id']}"
+                                    to_uid="{$v1['to_uid']}" to_username="{$v1['to_username']}"  from_username="{$v1['u_username']}"article_id="{$article['arc_id']}" rev_id="{$v['rev_id']}">回复</span></div>
+                        </div>
+                        {/foreach}
+
+                    </div>
+                    {/* 回复区--END */ }
+
+                </div>
+            </div>
+            {/foreach}
+        </div>
+    </div>
+</div>
+
+<script src="__STATIC__/res/layui/layui.all.js"></script>
+
+<!--评论时间处理-->
+<script>
+    $(document).ready(function () {
+        layui.use('util', function () {
+            var util = layui.util;
+            layui.$('#updatetime').html(util.timeAgo({$article['updatetime']} * 1000, true));
+            $('.rev_time').each(function () {
+                $(this).html(util.timeAgo($(this).html() * 1000, true));
+
+            });
+
+        });
+    });
+
+</script>
+<script>
+    $('.reply-action').click(function () {
+        /*layer.msg($(this).attr('from_uid'));
+        layer.msg($(this).attr('to_uid'));*/
+       // layer.msg($(this).attr('to_username'));
+        var data = {
+            to_uid: $(this).attr('from_uid'),
+            from_uid: "{:session('user.u_id')}",
+            article_id:$(this).attr('article_id'),
+            rev_id:$(this).attr('rev_id'),
+        };
+        let to_username=$(this).attr('to_username');
+        let from_username=$(this).attr('from_username');
+        layer.open({
+            id: 1,
+            type: 1,
+            title: '评论回复',
+            skin: 'layui-layer-rim',
+            area: ['450px', 'auto'],
+
+            content: ' <div class="row" style="width: 420px;  margin-left:7px; margin-top:10px;">'
+                + '<div class="col-sm-12" style="margin-top: 10px">'
+                + '<div class="input-group">'
+                + '<textarea id="content" required lay-verify="required" placeholder="回复'+from_username+'" class="layui-textarea"></textarea>'
+                + '</div>'
+                + '</div>'
+                + '</div>'
+            ,
+            btn: ['确认', '取消'],
+            btn1: function (index, layero) {
+                data['content']=$('#content').val();
+                $.ajax({
+                    url: "{:url('index/reply/index')}",
+                    data: data,
+                    method:'post',
+                    success: function (res) {
+                        layer.alert(res.msg)
+                        if(res.code==1){
+                            // layer.msg( res.msg);
+                            //刷新页面
+                            location.reload();
+
+                        }else if(res.code==99){
+                            // alert(99)
+                           /* location.reload();
+                          window.location-"/index/login/index";*/
+                            layer.closeAll();
+                            location.href='{:url("index/login/index")}';
+                        }
+                    },
+                    error: function () {
+                        layer.msg('请求失败')
+                    }
+                })
+            },
+            btn2: function (index, layero) {
+                layer.close(index);
+            }
+
+        });
+
+
+    });
+</script>
+
+<script>
+    $('#comment_btn').click(function () {
+
+        /*alert($('#comment_block').attr('article_id'));
+        alert($('#comment_block').val());
+        alert({:session('user.u_id')});*/
+
+
+        var arc_id=$('#comment_block').attr('article_id');
+        var rev_content=($('#comment_block').val());
+        var u_id="{:session('user.u_id')}";
+
+        $.ajax({
+            url:"{:url('index/reply/index')}",
+            data:{arc_id:arc_id,rev_content:rev_content,u_id:u_id},
+            success:function (res) {
+                layer.msg(res.msg)
+                if(res.code==0){
+                    window.location='/index/login/index';
+                }
+            }
+        })
+    });
+</script>
+
+{/block}
+

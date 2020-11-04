@@ -1,0 +1,77 @@
+{extend name='base'/}
+
+
+
+{block name='content'}
+<div class="container">
+    <div class="contar-wrap">
+        <h4 class="item-title">
+            <p><i class="layui-icon layui-icon-speaker"></i>公告：<span>欢迎来到我的轻博客</span></p>
+        </h4>
+        {foreach name='articles' item='art'}
+        <div class="item">
+            <div class="item-box  layer-photos-demo1 layer-photos-demo">
+                <h3><a href="{:url('article/index',['art_id'=>$art['arc_id']])}">{$art['arc_title']}</a></h3>
+                <h5>发布于：<span class="update_time">刚刚</span>
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    <i class="layui-icon layui-icon-note"></i>
+
+                    {foreach name="art['tags']" item='v'}
+                    <a href="{:url('tag/index',['tag_id'=>$v['tag_id']])}" class="layui-btn layui-btn-xs layui-btn-radius  layui-anim layui-anim-up layui-anim-scale">{$v['tag_name']}</a>
+                    {/foreach}
+                </h5>
+                <p> {$art['arc_digest']}</p>
+                <img src="../res/static/images/item.png" alt="">
+            </div>
+            <div class="comment count">
+                <a href="{:url('article/index',['art_id'=>$art['arc_id']])}#comment">评论({$art['review_count']})</a>
+                <a href="javascript:;" class="ilike" arc_id="{$art['arc_id']}">点赞(<span class="like_sum">{$art['likes']}</span>)</a>
+                <!--<a href="javascript:;" class="like">点赞{$art['likes']}</a>-->
+            </div>
+        </div>
+        {/foreach}
+
+    </div>
+    <div class="item-btn">
+         {$articles->render()|raw}
+    </div>
+</div>
+
+<script>
+    $('.ilike').click(function () {
+        let arc_id=$(this).attr('arc_id');
+        // alert($(this).children('.like_sum').text())
+        let like_sum_obj=$(this).children('.like_sum');
+        $.ajax({
+            url:'{:url("index/like/like")}',
+            data:{arc_id:arc_id},
+
+            success:function (res) {
+                if(res.code==0){
+                    layer.msg(res.msg,function () {
+                        location.href='{:url("index/login/index")}';
+                    })
+                }else if(res.code==1){
+
+                    //已登录
+                    layer.msg(res.msg);
+                    if(res.msg=='已取消点赞!'){
+                        var like_sum=parseInt(like_sum_obj.text());
+                        like_sum--;
+                        like_sum_obj.text(like_sum)
+                    }else if(res.msg=='点赞成功!'){
+                        var like_sum=parseInt(like_sum_obj.text());
+                        like_sum++;
+                        like_sum_obj.text(like_sum)
+                    }
+                }
+
+                // alert(res.msg);
+            }
+        })
+    });
+</script>
+
+{/block}
+
+

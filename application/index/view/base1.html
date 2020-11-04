@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>我的博客</title>
+
+
+    <link rel="stylesheet" href="/static/home/CSDN-index_files/content_toolbar.css">
+    <link rel="stylesheet" href="/static/home/CSDN-index_files/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/home/CSDN-index_files/avatar.css">
+    <link href="/static/home/CSDN-index_files/nav-second.css" type="text/css" rel="stylesheet">
+    <link href="/static/home/CSDN-index_files/csdn_feed.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/home/CSDN-index_files/user-tooltip.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/CSDN-index_files/pub_footer_1.0.3.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/CSDN-index_files/side-toolbar.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/CSDN-index_files/check-adb.css">
+</head>
+<body>
+<style>
+    #tags {
+        display: inline-block;
+        width: 70px;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+        border-radius: 19%;
+        text-align: center;
+        background-color: black;
+        /*border:1px dotted blue;*/
+        text-decoration: none;
+        margin: 5px 10px;
+        color: white;
+    }
+
+    #tags:hover {
+        background-color: blue;
+    }
+</style>
+
+<div id="csdn-toolbar" class="csdn-toolbar tb_disnone "
+     style="position: fixed; top: 0px; left: 0px; width: 100%; z-index: 9999; border-bottom: 1px solid pink">
+    <div class="container row center-block " id="csdn_container_tool">
+        <ul class="pull-left left-menu clearfix" id="nav-left-menu">
+            <li class="app-control app-app"><a href="" title="" class=""><img
+                    src="/static/home/images/boke_logo.jpg"
+                    class="csdn-logo"></a>
+                <div class="appControl"><span>                  <img src="/static/home/CSDN-index_files/csdnqr@2x.png">                  <em>CSDN</em>                </span>
+                </div>
+            </li>
+            {foreach name='topCates' item='vo'}
+            <li>
+                <a href="{:url('category/index',['caid'=>$vo['cate_id']])}" title="">{$vo['cate_name']}</a></li>
+            {/foreach}
+
+        </ul>
+    </div>
+</div>
+</div>
+<div class="container clearfix">
+    <nav id="nav" class="clearfix">
+        <nav id="csdn-nav-second" class="clearfix" style="position: fixed; left: 85px; top: 52px; z-index: 141;">
+            <div class="clearfix">
+                <div class="nav_com">
+                    <ul>
+                        <li class="nav_com_li active "><a class="current" href="" target="">最新</a>
+                        </li>
+                        {foreach name='cates' item='vo'}
+                        <li class="nav_com_li  "><a class="current"
+                                                    href="{:url('category/index',['caid'=>$vo['cate_id']])}" target="">{$vo['cate_name']}</a>
+                        </li>
+
+                        {/foreach}
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </nav>
+    <div class="fixed_content" id="mainContent">
+        <!--头部banner广告 begin-->
+        <!--头部banner广告end-->
+        <main style="padding-top:40px ">
+            {block name='main'}
+            {/block}
+
+        </main>
+
+        <aside>
+            <!-- 右侧轮播广告 begin -->
+            <div class="slide-outer right_top" style="position:relative; z-index:998;">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603026916692&di=e400658e1c6e90c3c17a4da45b120c90&imgtype=0&src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D2488948381%2C3823303226%26fm%3D214%26gp%3D0.jpg"
+                     alt="" width="300px">
+            </div>
+            <!-- 右侧轮播广告 end -->
+            <div class="right_box" style="">
+                {foreach name='tags' item='tag'}
+                <span class="line"></span>
+                <a href="{:url('tag/index',['tag_id'=>$tag['tag_id']])}" id="tags">{$tag['tag_name']}</a>
+                {/foreach}
+
+            </div>
+            <!-- 右侧图片广告 -->
+            <div class="right_extension slide-outer">
+            </div>
+            <div class="fixed24">
+                <!-- 广告位开始 -->
+                <div class="right_extension slide-outer">
+                </div>
+                <!-- 广告位结束 -->
+                <div class="persion_article">
+
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+
+
+</body>
+</html>

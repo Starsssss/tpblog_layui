@@ -1,0 +1,1 @@
+INSERT INTO `blog_review` (`u_id` , `to_uid` , `rev_content` , `arc_id` , `rev_pid` , `rev_time`) VALUES (4 , 2 , '~~~~~~~~~~' , 2 , 9 , 1604048239)
