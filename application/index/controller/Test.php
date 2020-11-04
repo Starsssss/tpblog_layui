@@ -1,5 +1,7 @@
 <?php
+
 namespace app\index\controller;
+
 use think\Controller;
 use think\Request;
 
@@ -12,9 +14,9 @@ class Test extends Controller
     }
     public function index()
     {
-        $this->error('哈哈','1');
+        $this->error('哈哈', '1');
         return $this->fetch();
-//        $this->success('成功',);
+        //        $this->success('成功',);
     }
     protected function initialize()
     {
@@ -34,15 +36,15 @@ class Test extends Controller
         halt(redis()->keys('*'));
         halt($num);
         return $this->fetch();*/
-        $name='aaa';
+        $name = 'aaa';
         redis()->incr($name);
-        redis()->expire($name,1000);
+        redis()->expire($name, 1000);
         echo redis()->get($name);
     }
 
     public function in()
     {
-        $obj=new Test();
+        $obj = new Test();
         $obj(122);
         var_dump(is_callable($obj));
     }
@@ -55,9 +57,8 @@ class Test extends Controller
 
     public function hello(Request $request)
     {
-        return 'Hello,' . $request->param('name') . '！';
+        return 'Hello,' . $request->param('name') . '！111';
     }
-
 }
 
 
